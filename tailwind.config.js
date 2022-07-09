@@ -8,10 +8,8 @@ module.exports = {
 	daisyui: {
 		themes: ["corporate"],
 		styled: true,
-
 		base: true,
 		utils: true,
-
 		darkTheme: "dark",
 	},
 };
