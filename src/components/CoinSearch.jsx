@@ -6,27 +6,29 @@ const CoinSearch = ({ coins }) => {
 
 	console.log(coins);
 	return (
-		<div>
-			<div>
-				<h1>Search Crypto</h1>
+		<div className="rounded-div my-4">
+			<div className="flex flex-col md:flex-row justify-between py-6 px-4 text-center md:text-right">
+				<h1 className="text-lg font-bold my-2">Search Crypto</h1>
 				<form>
 					<input
 						onChange={(e) => setSearchText(e.target.value)}
 						type="text"
 						placeholder="Search a coin"
+						className="input input-bordered input-secondary rounded-xl shadow-xl"
 					/>
 				</form>
 			</div>
-			<table>
+			<table className="w-full border-collapse text-center">
 				<thead>
-					<tr>
+					<tr className="border-b">
 						<th></th>
-						<th>#</th>
-						<th>Coin</th>
-						<th>Price</th>
+						<th className="px-4">#</th>
+						<th className="text-left">Coin</th>
+						<th></th>
+						<th>Price (INR)</th>
 						<th>24h</th>
-						<th>24h Volume</th>
-						<th>Market</th>
+						<th className="hidden md:table-cell">24h Volume</th>
+						<th className="hidden sm:table-cell">Market</th>
 						<th>Last 7 days</th>
 					</tr>
 				</thead>

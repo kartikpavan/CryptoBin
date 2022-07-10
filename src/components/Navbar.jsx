@@ -33,7 +33,7 @@ const Navbar = () => {
 			<div
 				className={
 					showMenu
-						? "md:hidden fixed left-0 top-20 flex flex-col items-center justify-between w-full h-[90%]  ease-in duration-300 z-10"
+						? "md:hidden fixed left-0 top-20 flex flex-col items-center justify-between w-full h-[90%] bg-slate-100 ease-in duration-300 z-10"
 						: "fixed left-[-100%] top-20 h-[90%] flex flex-col items-center justify-center ease-in duration-300"
 				}
 			>
