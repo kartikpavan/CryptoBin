@@ -1,5 +1,6 @@
 import React from "react";
 import { fetchData } from "../utils/FetchData";
+import { Link } from "react-router-dom";
 
 const Trending = () => {
 	const [trending, setTrending] = React.useState([]);
@@ -9,6 +10,7 @@ const Trending = () => {
 		const getTrendingData = async () => {
 			const data = await fetchData(url);
 			setTrending(data.coins);
+			console.log(data.coins);
 		};
 		getTrendingData();
 	}, []);
@@ -22,11 +24,15 @@ const Trending = () => {
 						return (
 							<div className="rounded-div flex justify-between p-4 hover:scale-105 ease-in-out duration-300">
 								<div className="flex w-full items-center justify-between">
-									<div className="flex items-center gap-4 ">
-										<img src={coin.item.small} alt={coin.item.symbol} />
-										<p className="font-bold ">{coin.item.name.slice(0, 10)}</p>
-										<p>{coin.item.symbol}</p>
-									</div>
+									<Link to={`/coin/${coin.item.id}`}>
+										<div className="flex items-center gap-4 ">
+											<img src={coin.item.small} alt={coin.item.symbol} />
+											<p className="font-bold ">
+												{coin.item.name.slice(0, 10)}
+											</p>
+											<p>{coin.item.symbol}</p>
+										</div>
+									</Link>
 								</div>
 								<div className="flex items-center gap-4">
 									<img
