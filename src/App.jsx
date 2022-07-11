@@ -9,11 +9,12 @@ import Login from "./pages/Login";
 import Account from "./pages/Account";
 
 import { fetchData } from "./utils/FetchData";
+import Footer from "./components/Footer";
 
 const App = () => {
 	const [coins, setCoins] = React.useState([]);
 
-	const url = `https://api.coingecko.com/api/v3/coins/markets?vs_currency=INR&order=market_cap_desc&per_page=10&page=1&sparkline=true`;
+	const url = `https://api.coingecko.com/api/v3/coins/markets?vs_currency=INR&order=market_cap_desc&per_page=20&page=1&sparkline=true`;
 
 	React.useEffect(() => {
 		async function fetchCoinData() {
@@ -34,6 +35,7 @@ const App = () => {
 				<Route path="/login" element={<Login />} />
 				<Route path="/coin/:coinID" element={<CoinPage />}></Route>
 			</Routes>
+			<Footer />
 		</>
 	);
 };
