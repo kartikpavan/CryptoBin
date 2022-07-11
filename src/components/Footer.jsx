@@ -9,8 +9,7 @@ const Footer = () => {
 						<span className="text-2xl font-semibold">CryptoBin</span>
 						<br />
 						provides a fundamental analysis of the crypto market. In addition to
-						tracking price, volume and market capitalisation, CoinGecko tracks community
-						growth, open-source code development, major events and on-chain metrics.
+						tracking price, volume and market capitalisation.
 					</p>
 				</div>
 				<div>
