@@ -1,10 +1,13 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
+import CoinPage from "./components/CoinPage";
 import About from "./pages/About";
 import Home from "./pages/Home";
 import Signin from "./pages/Signin";
 import Login from "./pages/Login";
+import Account from "./pages/Account";
+
 import { fetchData } from "./utils/FetchData";
 
 const App = () => {
@@ -26,8 +29,10 @@ const App = () => {
 			<Routes>
 				<Route path="/" element={<Home coins={coins} />} />
 				<Route path="/about" element={<About />} />
+				<Route path="/account" element={<Account />} />
 				<Route path="/signin" element={<Signin />} />
 				<Route path="/login" element={<Login />} />
+				<Route path="/coin/:coinID" element={<CoinPage />}></Route>
 			</Routes>
 		</>
 	);

@@ -4,7 +4,6 @@ import SingleCoinItem from "./SingleCoinItem";
 const CoinSearch = ({ coins }) => {
 	const [searchText, setSearchText] = React.useState("");
 
-	console.log(coins);
 	return (
 		<div className="rounded-div my-4">
 			<div className="flex flex-col md:flex-row justify-between py-6 px-4 text-center md:text-right">

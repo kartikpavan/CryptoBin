@@ -1,7 +1,7 @@
 import React from "react";
 import { AiOutlineStar, AiFillStar } from "react-icons/ai";
 import { Sparklines, SparklinesLine } from "react-sparklines";
-
+import { Link } from "react-router-dom";
 const SingleCoinItem = ({ coin }) => {
 	return (
 		<tr className="h-[80px] border-b overflow-hidden">
@@ -10,10 +10,12 @@ const SingleCoinItem = ({ coin }) => {
 			</td>
 			<td>{coin.market_cap_rank}</td>
 			<td>
-				<div className="flex items-center">
-					<img src={coin.image} alt={coin.name} className="w-6 mr-2 rounded" />
-					<p className="hidden sm:table-cell">{coin.name}</p>
-				</div>
+				<Link to={`/coin/${coin.id}`}>
+					<div className="flex items-center">
+						<img src={coin.image} alt={coin.name} className="w-6 mr-2 rounded" />
+						<p className="hidden sm:table-cell">{coin.name}</p>
+					</div>
+				</Link>
 			</td>
 			<td className="font-semibold ">{coin.symbol.toUpperCase()}</td>
 			<td>₹{coin.current_price.toLocaleString()}</td>

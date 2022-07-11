@@ -9,7 +9,6 @@ const Trending = () => {
 		const getTrendingData = async () => {
 			const data = await fetchData(url);
 			setTrending(data.coins);
-			console.log(data.coins);
 		};
 		getTrendingData();
 	}, []);
