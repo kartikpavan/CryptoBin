@@ -39,13 +39,15 @@ const Navbar = () => {
 			>
 				<ul className="w-full p-4 text-gray-800">
 					<li className="border-b py-6">
-						<Link to="/">HOME</Link>
+						<Link to="/" onClick={menuHandeler}>
+							HOME
+						</Link>
 					</li>
 					<li className="border-b py-6">
-						<Link to="/">ACCOUNT</Link>
+						<Link to="/account">ACCOUNT</Link>
 					</li>
 					<li className=" py-6">
-						<Link to="/">ABOUT</Link>
+						<Link to="/about">ABOUT</Link>
 					</li>
 				</ul>
 				<div className="flex flex-col w-full p-4">

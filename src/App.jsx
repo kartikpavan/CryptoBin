@@ -7,7 +7,7 @@ import Home from "./pages/Home";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 import Account from "./pages/Account";
-
+import Notfound from "./pages/Notfound";
 import { fetchData } from "./utils/FetchData";
 import Footer from "./components/Footer";
 
@@ -34,6 +34,7 @@ const App = () => {
 				<Route path="/signup" element={<Signup />} />
 				<Route path="/login" element={<Login />} />
 				<Route path="/coin/:coinID" element={<CoinPage />}></Route>
+				<Route path="/*" element={<Notfound />} />
 			</Routes>
 			<Footer />
 		</>
