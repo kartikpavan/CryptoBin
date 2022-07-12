@@ -35,11 +35,11 @@ const Login = () => {
 		}
 	};
 
-	// React.useEffect(() => {
-	// 	if (user !== null) {
-	// 		navigate("/account");
-	// 	}
-	// }, [user]);
+	React.useEffect(() => {
+		if (user !== null) {
+			navigate("/account");
+		}
+	}, [user]);
 
 	return (
 		<div className="w-full h-[70vh] flex justify-center items-center">

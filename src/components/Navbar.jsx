@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
+import { FaRegUserCircle } from "react-icons/fa";
 import { UserAuth } from "../context/AuthContext";
 
 const Navbar = () => {
@@ -40,7 +41,11 @@ const Navbar = () => {
 						<Link to="/account">
 							<div className="avatar flex items-center gap-2 border p-2 rounded-lg">
 								<div className="w-6 rounded-full">
-									<img src={user?.photoURL} alt="user-avatar" />
+									{user?.photoURL ? (
+										<img src={user?.photoURL} alt="user-avatar" />
+									) : (
+										<FaRegUserCircle size={24} />
+									)}
 								</div>
 								<p className="text-sm">My Account</p>
 							</div>
@@ -63,8 +68,22 @@ const Navbar = () => {
 			</div>
 
 			{/* Menu Icon */}
-			<div className="block md:hidden cursor-pointer z-10" onClick={menuHandeler}>
-				{showMenu ? <AiOutlineClose size={24} /> : <AiOutlineMenu size={24} />}
+			<div className=" md:hidden flex items-center gap-2">
+				<Link to="/account">
+					<div className="avatar border p-2 rounded-lg">
+						<div className="w-6 rounded-full">
+							{user?.photoURL ? (
+								<img src={user?.photoURL} alt="user-avatar" />
+							) : (
+								<FaRegUserCircle size={24} />
+							)}
+						</div>
+					</div>
+				</Link>
+
+				<div className="block md:hidden cursor-pointer z-10" onClick={menuHandeler}>
+					{showMenu ? <AiOutlineClose size={24} /> : <AiOutlineMenu size={24} />}
+				</div>
 			</div>
 
 			{/* Mobile Menu */}

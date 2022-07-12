@@ -21,7 +21,6 @@ export const AuthContextProvider = ({ children }) => {
 	const googleSignIn = () => {
 		const provider = new GoogleAuthProvider();
 		signInWithPopup(auth, provider);
-		return setDoc(doc(db, "users", "gmailusers"), { watchList: [] });
 	};
 
 	//* custom sign Up
