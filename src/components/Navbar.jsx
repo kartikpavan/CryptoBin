@@ -1,13 +1,32 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
+import { UserAuth } from "../context/AuthContext";
 
 const Navbar = () => {
 	const [showMenu, setShowMenu] = React.useState(false);
+	const { user, logOut } = UserAuth();
+	const navigate = useNavigate();
 
 	function menuHandeler() {
 		setShowMenu(!showMenu);
 	}
+
+	const handleLogout = async () => {
+		try {
+			await logOut();
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
+	useEffect(() => {
+		if (user !== null) {
+			navigate("/");
+		} else {
+			return;
+		}
+	}, []);
 
 	return (
 		<div className="rounded-div flex items-center justify-between h-20 font-bold">
@@ -15,12 +34,21 @@ const Navbar = () => {
 				<h1 className="text-2xl">CryptoBin</h1>
 			</Link>
 			<div className="hidden md:block">
-				<Link to="/login" className="p-4 hover:text-primary-focus">
-					Login
-				</Link>
-				<Link to="/signup" className="btn btn-primary text-white">
-					Sign Up
-				</Link>
+				{user?.displayName ? (
+					<button className="btn btn-sm btn-outline btn-error" onClick={handleLogout}>
+						Logout
+					</button>
+				) : (
+					<div>
+						{" "}
+						<Link to="/login" className="p-4 hover:text-primary-focus">
+							Login
+						</Link>
+						<Link to="/signup" className="btn btn-primary text-white">
+							Sign Up
+						</Link>
+					</div>
+				)}
 			</div>
 
 			{/* Menu Icon */}
@@ -44,20 +72,35 @@ const Navbar = () => {
 						</Link>
 					</li>
 					<li className="border-b py-6">
-						<Link to="/account">ACCOUNT</Link>
+						<Link to="/account" onClick={menuHandeler}>
+							ACCOUNT
+						</Link>
 					</li>
 					<li className=" py-6">
 						<Link to="/about">ABOUT</Link>
 					</li>
 				</ul>
 				<div className="flex flex-col w-full p-4">
-					<Link to="/login">
-						<button className="w-full p-3 my-2 btn text-lg">Login</button>
-					</Link>
-
-					<Link to="/signup">
-						<button className="w-full p-3 my-2 btn btn-primary text-lg">Sign Up</button>
-					</Link>
+					{user?.displayName ? (
+						<button className="btn btn-sm btn-outline btn-error"> Logout</button>
+					) : (
+						<div className="flex flex-col w-full p-4 gap-4">
+							<Link
+								to="/login"
+								className="p-4 btn btn-neutral"
+								onClick={menuHandeler}
+							>
+								Login
+							</Link>
+							<Link
+								to="/signup"
+								className="btn btn-primary text-white"
+								onClick={menuHandeler}
+							>
+								Sign Up
+							</Link>
+						</div>
+					)}
 				</div>
 			</div>
 		</div>

@@ -1,7 +1,28 @@
 import React from "react";
 import { AiOutlineMail, AiFillLock } from "react-icons/ai";
+import { Link, useNavigate } from "react-router-dom";
+
 import { GoogleButton } from "react-google-button";
+import { UserAuth } from "../context/AuthContext";
+
 const Signin = () => {
+	const { googleSignIn, user } = UserAuth();
+	const navigate = useNavigate();
+
+	const handleGoogleSignIn = async () => {
+		try {
+			await googleSignIn();
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
+	React.useEffect(() => {
+		if (user !== null) {
+			navigate("/account");
+		}
+	}, [user]);
+
 	return (
 		<div className="w-full h-[70vh] flex justify-center items-center">
 			<div className="max-w-[400px] w-full h-[500px] shadow-xl rounded-lg px-4 py-8">
@@ -43,7 +64,7 @@ const Signin = () => {
 					</h2>
 				</div>
 				<div className="mt-8">
-					<GoogleButton className="mx-auto" />
+					<GoogleButton className="mx-auto" onClick={handleGoogleSignIn} />
 				</div>
 			</div>
 		</div>

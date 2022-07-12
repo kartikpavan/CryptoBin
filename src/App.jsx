@@ -9,21 +9,32 @@ import Login from "./pages/Login";
 import Account from "./pages/Account";
 import Notfound from "./pages/Notfound";
 import Footer from "./components/Footer";
+import Protected from "./components/Protected";
+import { AuthContextProvider } from "./context/AuthContext";
 
 const App = () => {
 	return (
 		<>
-			<Navbar />
-			<Routes>
-				<Route path="/" element={<Home />} />
-				<Route path="/about" element={<About />} />
-				<Route path="/account" element={<Account />} />
-				<Route path="/signup" element={<Signup />} />
-				<Route path="/login" element={<Login />} />
-				<Route path="/coin/:coinID" element={<CoinPage />}></Route>
-				<Route path="/*" element={<Notfound />} />
-			</Routes>
-			<Footer />
+			<AuthContextProvider>
+				<Navbar />
+				<Routes>
+					<Route path="/" element={<Home />} />
+					<Route path="/about" element={<About />} />
+					<Route
+						path="/account"
+						element={
+							<Protected>
+								<Account />{" "}
+							</Protected>
+						}
+					/>
+					<Route path="/signup" element={<Signup />} />
+					<Route path="/login" element={<Login />} />
+					<Route path="/coin/:coinID" element={<CoinPage />}></Route>
+					<Route path="/*" element={<Notfound />} />
+				</Routes>
+				<Footer />
+			</AuthContextProvider>
 		</>
 	);
 };

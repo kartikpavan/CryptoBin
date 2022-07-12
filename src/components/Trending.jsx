@@ -22,7 +22,10 @@ const Trending = () => {
 				<div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
 					{trending.map((coin) => {
 						return (
-							<div className="rounded-div flex justify-between p-4 hover:scale-105 ease-in-out duration-300">
+							<div
+								className="rounded-div flex justify-between p-4 hover:scale-105 ease-in-out duration-300"
+								key={coin.id}
+							>
 								<div className="flex w-full items-center justify-between">
 									<Link to={`/coin/${coin.item.id}`}>
 										<div className="flex items-center gap-4 ">
