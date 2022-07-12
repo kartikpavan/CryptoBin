@@ -15,6 +15,7 @@ const Navbar = () => {
 	const handleLogout = async () => {
 		try {
 			await logOut();
+			setShowMenu(!showMenu);
 		} catch (error) {
 			console.log(error);
 		}
@@ -34,7 +35,7 @@ const Navbar = () => {
 				<h1 className="text-2xl">CryptoBin</h1>
 			</Link>
 			<div className="hidden md:block">
-				{user?.displayName ? (
+				{user?.uid ? (
 					<div className="flex gap-4 items-center">
 						<Link to="/account">
 							<div className="avatar flex items-center gap-2 border p-2 rounded-lg">
@@ -91,8 +92,11 @@ const Navbar = () => {
 					</li>
 				</ul>
 				<div className="flex flex-col w-full p-4">
-					{user?.displayName ? (
-						<button className="btn btn-sm btn-outline btn-error"> Logout</button>
+					{user?.uid ? (
+						<button className="btn btn-sm btn-outline btn-error" onClick={handleLogout}>
+							{" "}
+							Logout
+						</button>
 					) : (
 						<div className="flex flex-col w-full p-4 gap-4">
 							<Link

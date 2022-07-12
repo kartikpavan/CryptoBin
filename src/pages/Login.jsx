@@ -1,16 +1,61 @@
 import React from "react";
 import { AiOutlineMail, AiFillLock } from "react-icons/ai";
 import { GoogleButton } from "react-google-button";
+import { UserAuth } from "../context/AuthContext";
+import { Link, useNavigate } from "react-router-dom";
+
 const Login = () => {
+	const [email, setEmail] = React.useState("");
+	const [password, setPassword] = React.useState("");
+	const [error, setError] = React.useState("");
+	const [showPassword, setShowPassword] = React.useState(false);
+	const { googleSignIn, user, LogIn } = UserAuth();
+	const navigate = useNavigate();
+
+	const handleGoogleSignIn = async () => {
+		try {
+			await googleSignIn();
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
+	const submitHandler = async (e) => {
+		e.preventDefault();
+		if (!email || !password) {
+			setError("Incomplete Credentials");
+		} else {
+			try {
+				await LogIn(email, password);
+				navigate("/account");
+			} catch (error) {
+				setError(error.message);
+				console.log(error.message);
+			}
+		}
+	};
+
+	// React.useEffect(() => {
+	// 	if (user !== null) {
+	// 		navigate("/account");
+	// 	}
+	// }, [user]);
+
 	return (
 		<div className="w-full h-[70vh] flex justify-center items-center">
 			<div className="max-w-[400px] w-full h-[500px] shadow-xl rounded-lg px-4 py-8">
 				<h1 className="text-2xl font-bold">Login</h1>
-				<form>
+				{error ? (
+					<p className="text-red-600 bg-red-200 font-semibold text-center rounded-lg text-sm mt-2">
+						ERROR : {error}
+					</p>
+				) : null}
+				<form onSubmit={submitHandler}>
 					<div className="pt-4">
 						<label htmlFor="email">Email</label>
 						<div className="my-2 w-full relative rounded-2xl shadow-lg ">
 							<input
+								onChange={(e) => setEmail(e.target.value)}
 								type="Email"
 								name="email"
 								id="email"
@@ -23,6 +68,7 @@ const Login = () => {
 						<label htmlFor="password">Password</label>
 						<div className="my-2 w-full relative rounded-2xl shadow-lg ">
 							<input
+								onChange={(e) => setPassword(e.target.value)}
 								type="password"
 								name="password"
 								id="password"
@@ -43,7 +89,7 @@ const Login = () => {
 					</h2>
 				</div>
 				<div className="mt-8">
-					<GoogleButton className="mx-auto" />
+					<GoogleButton className="mx-auto" onClick={handleGoogleSignIn} />
 				</div>
 			</div>
 		</div>

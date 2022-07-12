@@ -20,10 +20,9 @@ const Account = () => {
 					<h1 className="text-2xl font-bold">Account</h1>
 					<div>
 						<p>
-							Welcome,{" "}
+							Welcome,
 							<span className="text-secondary text-2xl font-semibold">
-								{" "}
-								{user?.displayName}{" "}
+								{user?.displayName ? user.displayName : user.email}
 							</span>
 						</p>
 					</div>

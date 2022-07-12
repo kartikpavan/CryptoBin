@@ -5,8 +5,12 @@ import {
 	signInWithRedirect,
 	signOut,
 	onAuthStateChanged,
+	createUserWithEmailAndPassword,
+	signInWithEmailAndPassword,
 } from "firebase/auth";
-import { auth } from "../Firebase";
+import { doc, setDoc } from "firebase/firestore";
+
+import { auth, db } from "../Firebase";
 
 const AuthContext = createContext();
 
@@ -16,8 +20,19 @@ export const AuthContextProvider = ({ children }) => {
 	//* google Sign IN
 	const googleSignIn = () => {
 		const provider = new GoogleAuthProvider();
-		// signInWithPopup(auth, provider);
 		signInWithRedirect(auth, provider);
+		return setDoc(doc(db, "users", "gmailusers"), { watchList: [] });
+	};
+
+	//* custom sign Up
+	const signUp = (email, password) => {
+		createUserWithEmailAndPassword(auth, email, password);
+		return setDoc(doc(db, "users", email), { watchList: [] });
+	};
+
+	//* Custom Log In
+	const LogIn = (email, password) => {
+		signInWithEmailAndPassword(auth, email, password);
 	};
 
 	//* google signout
@@ -37,8 +52,7 @@ export const AuthContextProvider = ({ children }) => {
 	}, []);
 
 	return (
-		<AuthContext.Provider value={{ googleSignIn, user, logOut }}>
-			{" "}
+		<AuthContext.Provider value={{ googleSignIn, user, logOut, LogIn, signUp }}>
 			{children}
 		</AuthContext.Provider>
 	);
