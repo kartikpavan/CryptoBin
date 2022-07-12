@@ -20,7 +20,7 @@ export const AuthContextProvider = ({ children }) => {
 	//* google Sign IN
 	const googleSignIn = () => {
 		const provider = new GoogleAuthProvider();
-		signInWithRedirect(auth, provider);
+		signInWithPopup(auth, provider);
 		return setDoc(doc(db, "users", "gmailusers"), { watchList: [] });
 	};
 
