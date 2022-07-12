@@ -35,9 +35,19 @@ const Navbar = () => {
 			</Link>
 			<div className="hidden md:block">
 				{user?.displayName ? (
-					<button className="btn btn-sm btn-outline btn-error" onClick={handleLogout}>
-						Logout
-					</button>
+					<div className="flex gap-4 items-center">
+						<Link to="/account">
+							<div className="avatar flex items-center gap-2 border p-2 rounded-lg">
+								<div className="w-6 rounded-full">
+									<img src={user?.photoURL} alt="user-avatar" />
+								</div>
+								<p className="text-sm">My Account</p>
+							</div>
+						</Link>
+						<button className="btn btn-sm btn-outline btn-error" onClick={handleLogout}>
+							Logout
+						</button>{" "}
+					</div>
 				) : (
 					<div>
 						{" "}
