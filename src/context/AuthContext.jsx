@@ -27,7 +27,7 @@ export const AuthContextProvider = ({ children }) => {
 	//* custom sign Up
 	const signUp = (email, password) => {
 		createUserWithEmailAndPassword(auth, email, password);
-		return setDoc(doc(db, "users", user.email), { watchList: [] }, { merge: true });
+		return setDoc(doc(db, "users", email), { watchList: [] }, { merge: true });
 	};
 
 	//* Custom Log In

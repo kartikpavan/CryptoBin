@@ -69,7 +69,7 @@ const Login = () => {
 						<div className="my-2 w-full relative rounded-2xl shadow-lg ">
 							<input
 								onChange={(e) => setPassword(e.target.value)}
-								type="password"
+								type={showPassword ? "text" : "password"}
 								name="password"
 								id="password"
 								className="w-full p-2 border rounded-2xl"
@@ -77,13 +77,26 @@ const Login = () => {
 							<AiFillLock className="absolute right-2 top-3 text-gray-400" />
 						</div>
 						<div className="flex items-center gap-4 mt-4">
-							<input type="checkbox" name="" id="" className="ml-2 checkbox-xs" />
+							<input
+								type="checkbox"
+								name=""
+								id=""
+								className="ml-2 checkbox-xs"
+								onClick={() => setShowPassword(!showPassword)}
+							/>
 							<p className="text-sm text-gray-500">Show Password</p>
 						</div>
 					</div>
 					<button className="btn btn-primary w-full mt-4">Login</button>
 				</form>
-				<div className="mt-8 mb-4">
+				<p className="text-sm text-gray-500 italic mt-2">
+					Don't have an account ?
+					<Link to="/signup" className="text-secondary underline font-semibold">
+						{" "}
+						click here to Sign Up{" "}
+					</Link>
+				</p>
+				<div className="mt-4 mb-4">
 					<h2 className="w-full text-center border-b-2 leading-[0.1em] m-[10px 0 20px]">
 						<span className="bg-[#fff]">OR</span>
 					</h2>

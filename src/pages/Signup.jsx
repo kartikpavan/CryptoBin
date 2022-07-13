@@ -44,7 +44,7 @@ const Signin = () => {
 	return (
 		<div className="w-full h-[70vh] flex justify-center items-center">
 			<div className="max-w-[400px] w-full h-[500px] shadow-xl rounded-lg px-4 py-8">
-				<h1 className="text-2xl font-bold">Sign Up</h1>
+				<h1 className="text-2xl font-bold text-secondary ">Sign Up</h1>
 				{error ? (
 					<p className="text-red-600 bg-red-200 font-semibold text-center rounded-lg text-sm mt-2">
 						ERROR : {error}
@@ -69,7 +69,7 @@ const Signin = () => {
 						<div className="my-2 w-full relative rounded-2xl shadow-lg ">
 							<input
 								onChange={(e) => setPassword(e.target.value)}
-								type="password"
+								type={showPassword ? "text" : "password"}
 								name="password"
 								id="password"
 								className="w-full p-2 border rounded-2xl"
@@ -77,15 +77,27 @@ const Signin = () => {
 							<AiFillLock className="absolute right-2 top-3 text-gray-400" />
 						</div>
 						<div className="flex items-center gap-4 mt-4">
-							<input type="checkbox" name="" id="" className="ml-2 checkbox-xs" />
+							<input
+								type="checkbox"
+								name=""
+								id=""
+								className="ml-2 checkbox-xs"
+								onClick={() => setShowPassword(!showPassword)}
+							/>
 							<p className="text-sm text-gray-500">Show Password</p>
 						</div>
 					</div>
 					<button type="submit" className="btn btn-primary w-full mt-4">
-						Sign In
+						Sign Up
 					</button>
 				</form>
-				<div className="mt-8 mb-4">
+				<p className="text-sm text-gray-500 italic mt-2">
+					Already have an account ?
+					<Link to="/login" className="text-secondary underline font-semibold">
+						click here to Login
+					</Link>
+				</p>
+				<div className="mt-4 mb-4">
 					<h2 className="w-full text-center border-b-2 leading-[0.1em] m-[10px 0 20px]">
 						<span className="bg-[#fff]">OR</span>
 					</h2>
