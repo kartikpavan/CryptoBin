@@ -6,6 +6,7 @@
 
 ### COIN_BIN provides a fundamental analysis of the crypto market. In addition to tracking price, volume and market capitalisation.
 
+#### To start tracking your favourite crypto coin either create an account or sign in with google. 
 ### Tools used
 
 -   React Js
