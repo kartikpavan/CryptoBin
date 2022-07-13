@@ -21,13 +21,13 @@ export const AuthContextProvider = ({ children }) => {
 	const googleSignIn = () => {
 		const provider = new GoogleAuthProvider();
 		signInWithPopup(auth, provider);
-		return setDoc(doc(db, "users", user.email), { watchList: [] });
+		return setDoc(doc(db, "users", user.email), { watchList: [] }, { merge: true });
 	};
 
 	//* custom sign Up
 	const signUp = (email, password) => {
 		createUserWithEmailAndPassword(auth, email, password);
-		return setDoc(doc(db, "users", user.email), { watchList: [] });
+		return setDoc(doc(db, "users", user.email), { watchList: [] }, { merge: true });
 	};
 
 	//* Custom Log In
