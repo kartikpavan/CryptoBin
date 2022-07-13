@@ -25,7 +25,15 @@ const SingleCoinItem = ({ coin }) => {
 				}),
 			});
 		} else {
-			alert("please Sign in to save coin to your watch list");
+			await setDoc(coinPath, {
+				watchList: arrayUnion({
+					id: coin?.id,
+					name: coin?.name,
+					image: coin?.image,
+					rank: coin?.market_cap_rank,
+					symbol: coin?.symbol,
+				}),
+			});
 		}
 	};
 
