@@ -1,21 +1,22 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { AiOutlineClose } from "react-icons/ai";
-import { onSnapshot, doc, updateDoc } from "firebase/firestore";
+import { onSnapshot, doc, updateDoc, setDoc } from "firebase/firestore";
 import { db } from "../Firebase";
 import { UserAuth } from "../context/AuthContext";
 
 const SavedCoin = () => {
 	const [coins, setCoins] = React.useState([]);
 	const { user } = UserAuth();
+	console.log(user.email);
 
 	useEffect(() => {
-		onSnapshot(doc(db, "users", `${user?.email}`), (doc) => {
+		onSnapshot(doc(db, "users", `${user.email}`), (doc) => {
 			setCoins(doc.data().watchList);
 		});
-	}, []);
+	}, [user.email]);
 
-	const coinPath = doc(db, "users", `${user?.email}`);
+	const coinPath = doc(db, "users", `${user.email}`);
 
 	const deleteCoin = async (id) => {
 		try {

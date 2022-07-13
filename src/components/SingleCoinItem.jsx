@@ -4,7 +4,7 @@ import { Sparklines, SparklinesLine } from "react-sparklines";
 import { Link } from "react-router-dom";
 import { UserAuth } from "../context/AuthContext";
 import { db } from "../Firebase";
-import { arrayUnion, doc, updateDoc } from "firebase/firestore";
+import { arrayUnion, doc, updateDoc, setDoc } from "firebase/firestore";
 
 const SingleCoinItem = ({ coin }) => {
 	const [savedCoin, setSavedCoin] = React.useState(false);
